@@ -1,3 +1,6 @@
 from django.contrib import admin
 
-# Register your models here.
+from core.models import TaskTicket, Answer
+
+admin.site.register(TaskTicket)
+admin.site.register(Answer)
