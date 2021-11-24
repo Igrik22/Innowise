@@ -16,3 +16,16 @@ services:
       - POSTGRES_DB=docker
     ports:
       - "5432:5432"
+
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/innowise
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres
+
+volumes:
+  postgres:

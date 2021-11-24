@@ -43,4 +43,3 @@ class AnswerUpdateView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Answer.objects.all()
     serializer_class = serializers.AnswerSerializer
     permission_classes = [IsOwnerOrReadOnly, permissions.IsAdminUser]
-

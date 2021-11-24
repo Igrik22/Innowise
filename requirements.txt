@@ -30,3 +30,6 @@ sqlparse==0.4.2
 uritemplate==4.1.1
 urllib3==1.26.7
 
+pytest-assert-utils==0.3.0
+pytest-common-subject==1.0.5
+pytest-django
