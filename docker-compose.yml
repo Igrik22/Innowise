@@ -1,0 +1,48 @@
+version: '3.7'
+services:
+
+  redis:
+    image: redis:alpine
+    volumes:
+      - ./redis:/code/redis
+    ports:
+      - "6379:6379"
+
+  postgres:
+    image: postgres:10.10-alpine
+    restart: "no"
+    command: postgres
+    volumes:
+      - ./postgres:/code/postgres
+    environment:
+      - POSTGRES_HOST=localhost
+      - POSTGRES_USER=docker
+      - POSTGRES_PASSWORD=docker
+      - POSTGRES_PORT=5432
+      - POSTGRES_DB=docker
+    ports:
+      - "5432:5432"
+
+  web:
+    tty: true
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres
+      - redis
+
+  celery:
+    build: .
+    command: celery -A innowise worker -l info
+    depends_on:
+      - web
+      - redis
+
+volumes:
+  postgres:
+  redis:
+
