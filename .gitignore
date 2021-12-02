@@ -127,4 +127,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+<<<<<<< HEAD
 .idea
+=======
+>>>>>>> 99b47cc614158d4cde7d79a22fa053f758829ac8
